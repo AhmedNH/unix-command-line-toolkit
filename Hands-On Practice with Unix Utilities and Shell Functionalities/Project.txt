@@ -1,0 +1,1313 @@
+0- chsh
+/cs/local/bin/bash
+cd "/cs/home/nahass/Desktop/2031 A/Lab 6/Files"
+
+1- cp /eecs/dept/course/2019-20/W/2030tmp/xxx .
+
+2- ls
+Results:
+xxx
+
+3- cp /eecs/dept/course/2019-20/W/2030tmp/xFile* .
+
+4- ls xFile*
+Results: 
+xFile2 xFile3
+
+ls
+Results: 
+xFile2 xFile3 xxx
+
+5- cp xxx xxx2
+ls
+Results:
+xFile2 xFile3 xxx xxx2
+
+6- mv xxx xFile1
+
+7- (1) echo $?
+Results:
+0
+
+(2) ls
+Results:
+xFile1 xFile2 xFile3 xxx2
+
+8- (1) mkdir 2031unix
+(2) mkdir 2031unix/lab6a
+
+9- ls -R 2031unix
+Results:
+2031unix:
+lab6a
+
+2031unix/lab6a:
+
+10- mv xFile1 2031unix/lab6a/
+
+11- mv xFile2 xFile3 2031unix/lab6a/
+
+12- ls -l -R 2031unix
+Results:
+2031unix:
+total 0
+drwx------ 2 nahass ugrad 64 Nov 18 16:57 lab6a
+
+2031unix/lab6a:
+total 12
+-rwx------ 1 nahass ugrad 145 Nov 18 16:43 xFile1
+-rwx------ 1 nahass ugrad 145 Nov 18 16:43 xFile2
+-rwx------ 1 nahass ugrad  87 Nov 18 16:43 xFile3
+
+13- (1) cd 2031unix
+(2) pwd
+Results:
+/cs/home/nahass/Desktop/2031 A/Lab 6/Files/2031unix
+
+14- (1) ls -l lab6a
+Results: 
+total 12
+-rwx------ 1 nahass ugrad 145 Nov 18 16:43 xFile1
+-rwx------ 1 nahass ugrad 145 Nov 18 16:43 xFile2
+-rwx------ 1 nahass ugrad  87 Nov 18 16:43 xFile3
+
+(2) ls -ld lab6a
+Results:
+drwx------ 2 nahass ugrad 64 Nov 18 16:57 lab6a
+
+15- cp -r lab6a lab6b
+
+16- ls -l *
+Results:
+lab6a:
+total 12
+-rwx------ 1 nahass ugrad 145 Nov 18 16:43 xFile1
+-rwx------ 1 nahass ugrad 145 Nov 18 16:43 xFile2
+-rwx------ 1 nahass ugrad  87 Nov 18 16:43 xFile3
+
+lab6b:
+total 12
+-rwx------ 1 nahass ugrad 145 Nov 18 16:59 xFile1
+-rwx------ 1 nahass ugrad 145 Nov 18 16:59 xFile2
+-rwx------ 1 nahass ugrad  87 Nov 18 16:59 xFile3
+
+17- cd "/cs/home/nahass/Desktop/2031 A/Lab 6/Files"
+mv xxx2 2031unix
+cd 2031unix
+cp xxx2 lab6a
+
+18- rmdir lab6a
+Results:
+rmdir: failed to remove 'lab6a': Directory not empty
+
+19- echo $?
+Results:
+1
+
+20- rm -rf lab6a
+
+21- (1) echo $?
+Results:
+0
+
+(2) ls lab6a
+Results:
+ls: cannot access 'lab6a': No such file or directory
+
+22- cp xxx2 lab6a
+
+23- rm lab6a xxx2
+Results:
+rm: remove regular file 'lab6a'? y
+rm: remove regular file 'xxx2'? y
+
+24- mv lab6b/xFile1 .
+
+25- find . –name "xFile*"
+Results:
+.
+./lab6b
+./lab6b/xFile2
+./lab6b/xFile3
+./xFile1
+find: ‘–name’: No such file or directory
+find: ‘xFile*’: No such file or directory
+
+26- mv lab6b lab6working
+
+
+27- (1) cd lab6working
+(2) pwd
+Results:
+/cs/home/nahass/Desktop/2031 A/Lab 6/Files/2031unix/lab6working
+
+28- mv ../xFile1 .
+
+29- ls -l
+Results:
+total 12
+-rwx------ 1 nahass ugrad 145 Nov 18 16:59 xFile1
+-rwx------ 1 nahass ugrad 145 Nov 18 16:59 xFile2
+-rwx------ 1 nahass ugrad  87 Nov 18 16:59 xFile3
+
+30- cat
+Hi
+Hi
+There
+There
+^D
+
+31- (1) cat > temp
+Hi
+There
+^D
+(2) ls
+Results:
+temp  xFile1  xFile2  xFile3
+
+(3) cat temp
+Results:
+Hi
+There
+
+32- rm temp
+Results:
+rm: remove regular file 'temp'? y
+
+33- cat xFile1
+Results:
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+
+34- more xFile?
+Results:
+::::::::::::::
+xFile1
+::::::::::::::
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+::::::::::::::
+xFile2
+::::::::::::::
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+::::::::::::::
+xFile3
+::::::::::::::
+John Smith  1222 26 Apr 1956
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+
+35- wc -l xFile1
+Results:
+5 xFile1
+
+36- head -n 2 xFile1
+Results:
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+
+37- tail -n 3 xFile2
+Results:
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+
+38- (1) cmp xFile1 xFile2
+(2) echo $?
+Results:
+0
+
+39- (1) diff xFile1 xFile2
+(2) echo $?
+Results:
+0
+
+40- (1) diff xFile2 xFile3
+Results:
+2d1
+< Tony Jones  2152 20 Mar 1950
+5d3
+< Lisa Sue    1222 4  Jul 1980
+
+(2) echo $?
+Results:
+1
+
+41- (1) cmp xFile2 xFile3
+Results:
+xFile2 xFile3 differ: byte 30, line 2
+
+(2) echo $?
+Results:
+1
+
+42- (1) cat xFile1 xFile2 xFile3 > xFile123
+(2) cat xFile123
+Results:
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+John Smith  1222 26 Apr 1956
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+
+43- sort xFile123
+Results:
+John Duncan 2    20 Jan 1966
+John Duncan 2    20 Jan 1966
+John Duncan 2    20 Jan 1966
+John Smith  1222 26 Apr 1956
+John Smith  1222 26 Apr 1956
+John Smith  1222 26 Apr 1956
+Larry Jones 3223 20 Dec 1946
+Larry Jones 3223 20 Dec 1946
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+Lisa Sue    1222 4  Jul 1980
+Tony Jones  2152 20 Mar 1950
+Tony Jones  2152 20 Mar 1950
+
+44- sort xFile123 | uniq
+Results:
+John Duncan 2    20 Jan 1966
+John Smith  1222 26 Apr 1956
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+Tony Jones  2152 20 Mar 1950
+
+45- sort xFile123 | uniq > xFile123compact
+
+46- cat xFile123compact
+Results:
+John Duncan 2    20 Jan 1966
+John Smith  1222 26 Apr 1956
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+Tony Jones  2152 20 Mar 1950
+
+47- chmod u-r xFile1
+ls -l xFile1
+Results: 
+--wx------ 1 nahass ugrad 145 Nov 18 16:59 xFile1
+
+cat xFile1
+Results:
+cat: xFile1: Permission denied
+
+48- chmod 775 xFile1
+ls -l xFile1
+Results:
+-rwxrwxr-x 1 nahass ugrad 145 Nov 18 16:59 xFile1
+
+49- chmod g-w,o+rw xFile1
+ls -l xFile1
+Results:
+-rwxr-xrwx 1 nahass ugrad 145 Nov 18 16:59 xFile1
+
+50- echo "this is a xxx new line" >> xFile1
+cat xFile1
+Results:
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+this is a xxx new line
+
+51- chmod u-w xFile1
+echo "this is a xxx new line" >> xFile1
+Results:
+bash: xFile1: Permission denied
+
+52- cp /eecs/dept/course/2019-20/W/2030tmp/Hello.html ~/www/
+ls -ld ~/www
+Results:
+drwx--xr-x 2 nahass ugrad 91 Nov 18 17:32 /cs/home/nahass/www
+
+chmod o+rx ~/www
+ls -ld ~/www
+Results:
+drwx--xr-x 2 nahass ugrad 91 Nov 18 17:32 /cs/home/nahass/www
+
+nano ~/www/Hello.html
+Results:
+<!doctype html>
+<html lang="en">
+ <head>
+    <title>Document</title>
+ </head>
+ <body>
+
+ <h1>Hello from Ahmed Elnahass</h1>
+ <h2>Welcome to my webpage</h2>
+
+
+ </body>
+</html>
+
+chmod o+r ~/www/Hello.html
+ls -l ~/www/Hello.html
+Results:
+-rw----r-- 1 nahass ugrad 189 Nov 18 17:34 /cs/home/nahass/www/Hello.html
+
+chmod o-r ~/www/Hello.html
+ls -l ~/www/Hello.html
+Results:
+-rw------- 1 nahass ugrad 189 Nov 18 17:34 /cs/home/nahass/www/Hello.html
+
+53- (1) ls -lt
+Results:
+total 20
+-r-xr-xrwx 1 nahass ugrad 168 Nov 18 17:30 xFile1
+-rw------- 1 nahass ugrad 145 Nov 18 17:27 xFile123compact
+-rw------- 1 nahass ugrad 377 Nov 18 17:26 xFile123
+-rwx------ 1 nahass ugrad  87 Nov 18 16:59 xFile3
+-rwx------ 1 nahass ugrad 145 Nov 18 16:59 xFile2
+
+(2) ls -ltr
+Results:
+total 20
+-rwx------ 1 nahass ugrad 145 Nov 18 16:59 xFile2
+-rwx------ 1 nahass ugrad  87 Nov 18 16:59 xFile3
+-rw------- 1 nahass ugrad 377 Nov 18 17:26 xFile123
+-rw------- 1 nahass ugrad 145 Nov 18 17:27 xFile123compact
+-r-xr-xrwx 1 nahass ugrad 168 Nov 18 17:30 xFile1
+
+54- (1) ls -lS
+Results:
+total 20
+-rw------- 1 nahass ugrad 377 Nov 18 17:26 xFile123
+-r-xr-xrwx 1 nahass ugrad 168 Nov 18 17:30 xFile1
+-rw------- 1 nahass ugrad 145 Nov 18 17:27 xFile123compact
+-rwx------ 1 nahass ugrad 145 Nov 18 16:59 xFile2
+-rwx------ 1 nahass ugrad  87 Nov 18 16:59 xFile3
+
+(2) ls -lSr
+Results:
+total 20
+-rwx------ 1 nahass ugrad  87 Nov 18 16:59 xFile3
+-rwx------ 1 nahass ugrad 145 Nov 18 16:59 xFile2
+-rw------- 1 nahass ugrad 145 Nov 18 17:27 xFile123compact
+-r-xr-xrwx 1 nahass ugrad 168 Nov 18 17:30 xFile1
+-rw------- 1 nahass ugrad 377 Nov 18 17:26 xFile123
+
+55- sort -k3 xFile123compact
+Results:
+John Smith  1222 26 Apr 1956
+Lisa Sue    1222 4  Jul 1980
+Tony Jones  2152 20 Mar 1950
+John Duncan 2    20 Jan 1966
+Larry Jones 3223 20 Dec 1946
+
+56- sort -k3,3n xFile123compact
+Results:
+John Duncan 2    20 Jan 1966
+John Smith  1222 26 Apr 1956
+Lisa Sue    1222 4  Jul 1980
+Tony Jones  2152 20 Mar 1950
+Larry Jones 3223 20 Dec 1946
+
+57- (1) sort -k6,6n xFile123compact
+Results:
+Larry Jones 3223 20 Dec 1946
+Tony Jones  2152 20 Mar 1950
+John Smith  1222 26 Apr 1956
+John Duncan 2    20 Jan 1966
+Lisa Sue    1222 4  Jul 1980
+
+(2) sort -k6,6nr xFile123compact
+Results:
+Lisa Sue    1222 4  Jul 1980
+John Duncan 2    20 Jan 1966
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+Larry Jones 3223 20 Dec 1946
+
+58- sort -k5 xFile123compact
+Results:
+John Smith  1222 26 Apr 1956
+Larry Jones 3223 20 Dec 1946
+John Duncan 2    20 Jan 1966
+Lisa Sue    1222 4  Jul 1980
+Tony Jones  2152 20 Mar 1950
+
+59- sort -k5,5M xFile123compact
+Results:
+John Duncan 2    20 Jan 1966
+Tony Jones  2152 20 Mar 1950
+John Smith  1222 26 Apr 1956
+Lisa Sue    1222 4  Jul 1980
+Larry Jones 3223 20 Dec 1946
+
+60- egrep 2 xFile123compact
+Results:
+John Duncan 2    20 Jan 1966
+John Smith  1222 26 Apr 1956
+Larry Jones 3223 20 Dec 1946
+Lisa Sue    1222 4  Jul 1980
+Tony Jones  2152 20 Mar 1950
+
+61- egrep ' 2 ' xFile123compact
+Results:
+John Duncan 2    20 Jan 1966
+
+62- egrep '195.' xFile123compact
+Results:
+John Smith  1222 26 Apr 1956
+Tony Jones  2152 20 Mar 1950
+
+63- egrep '195.' xFile123compact | wc -l
+Results:
+2
+
+64- cp /eecs/dept/course/2019-20/W/2030tmp/22Fclasslist .
+more 22Fclasslist
+Results:
+abdul***  	*********	Al-Daeni	 Abdulazeez                   
+ 
+ahmadrp   	*********	Pasha	 Ahmad                            
+ajv**     	*********	Venditti	 Anthony                      
+ 
+aryan***  	*********	Kalra	 Aryan                            
+asdsoulj  	*********	Sidorin	 Dmitrii                        
+ayse**    	*********	Cakmak	 Ayse                            
+basara    	*********	Guan	 Lin                               
+brainbun  	*********	Cai	 Brian                              
+bw**      	*********	Wong	 Brandon                           
+caoy**    	*********	Cao	 Yunfei                             
+carld**   	*********	Doroon	 Carl David                      
+dan**     	*********	Liu	 Danyang                            
+dennis**  	*********	Snegiroff	 Dennis                       
+drofel    	*********	Retinskiy	 Georgy                       
+echendu*  	*********	Echendu	 Ekenedilichukwu                
+ejaluk    	*********	Ejuku	 Kofi                             
+enesy     	*********	Yesil	 Enes                             
+enoch*    	*********	Zhang	 Jun                              
+fafaki**  	*********	Akbarzadeh	 Faraz                       
+frangu    	*********	Gu	 Xiaowei                             
+franklai  	*********	Lai	 Frankie                            
+hastigh   	*********	Ghaneshirazi	 Hasti                     
+hbnfvda   	*********	Pan	 Zhucheng                           
+hiba***   	*********	Halani	 Hiba                            
+hrsh****  	*********	Benipal	 Harsh-Deep                     
+iliaaz    	*********	Azari	 Ilia                             
+irithyll  	*********	Zhou	 Zehao                             
+jaivald   	*********	Desai	 Jaival                           
+jared***  	*********	Leong	 Jared                            
+jawad**   	*********	Bhuiyan	 Jawad                          
+jaydenpb  	*********	Brooks	 Jayden                          
+jguo***   	*********	Guo	 Jing                               
+jiahao**  	*********	Rong	 Jiahao                            
+jibril**  	*********	Osman	 Jibril                           
+jon****   	*********	Trinh	 Jonathan                         
+jxcho     	*********	Cho	 Justin Yong June                   
+kris****  	*********	Singh	 Kristian                         
+ldt****   	*********	Li	 Dongtai                             
+ldv**     	*********	Aldave	 Adam                            
+luanarm   	*********	Ribeiro Madeira	 Luana                  
+masonw    	*********	Wang	 Zhenxu                            
+mehryars  	*********	Sehati	 Mehryar                         
+mmhoss    	*********	Hosseini	 Mohammad                     
+ 
+mm***     	*********	Marufuzzaman	 Syed                      
+moaz**    	*********	Elzaabalawy	 Moaz                       
+moe***    	*********	Shamsa	 Mohammed                        
+monna***  	*********	Jiang	 Menghua                          
+mukul**   	*********	Chauhan	 Mukul                          
+nguyet**  	*********	Nguyen	 Thanh                           
+oliviayy  	*********	Yue	 Yao                                
+omarhi    	*********	Al Haj Issa	 Omar                       
+pritam    	*********	Sapkota	 Pritam                         
+raishat   	*********	Raisha	 Thahsin                         
+ramanc    	*********	Clair	 Ramandeep                        
+sayurus   	*********	Samarawickrama	 Sayuru                  
+simonhuo  	*********	Huo	 Sicheng                            
+sismail*  	*********	Ismail	 Shahnaz                         
+smi**     	*********	Islam	 Sheikh                           
+syed***   	*********	Syed	 Mustafa                           
+ubaidh**  	*********	Ubaid	 Hazm                             
+vishek**  	*********	Lamba	 Vishek                           
+w*nfred   	*********	Liu	 Chenxi                             
+yhj****   	*********	Yun	 Hyunji                             
+yuanh     	*********	Yuan	 He Yang                           
+zeeshanr  	*********	Rafaqat	 Zeeshan                        
+zhang**   	*********	Zhang	 Hao                              
+zzy****   	*********	Zhang	 Ziyan                            
+added    	*********	Lau	 XueSW
+cse***    	*********	Yu	 Ying
+cse***    	*********	Wong	 JunXiu
+ttCTV*    	cse******	Tong	 Tracy
+addedD    	*********	Pak	 Son-hyang
+addSu    	*********	Liu	 Qing
+add22f  	*********	Chen	 QingS
+add22f  	*********	Chang	 QiSim
+add22f  	*********	Chan	 Qin
+add22f  	*********	Zhu	 XQ
+
+wc -l 22Fclasslist
+Results:
+77 22Fclasslist
+
+65- egrep 'Elnahass' 22Fclasslist
+
+66- (1) egrep Li 22Fclasslist
+Results:
+basara    	*********	Guan	 Lin                               
+dan**     	*********	Liu	 Danyang                            
+ldt****   	*********	Li	 Dongtai                             
+w*nfred   	*********	Liu	 Chenxi                             
+addSu    	*********	Liu	 Qing
+
+(2) egrep '\bLi\b' 22Fclasslist
+Results:
+ldt****   	*********	Li	 Dongtai
+
+67- (1) egrep '\bWong\b' 22Fclasslist | wc -l
+Results:
+2
+
+(2) egrep Wong 22Fclasslist
+Results:
+bw**      	*********	Wong	 Brandon                           
+cse***    	*********	Wong	 JunXiu
+
+68- (1) egrep '\bLiu\b' 22Fclasslist | wc -l
+Results:
+3
+
+(2) egrep Liu 22Fclasslist
+Results:
+dan**     	*********	Liu	 Danyang                            
+w*nfred   	*********	Liu	 Chenxi                             
+addSu    	*********	Liu	 Qing
+
+69- egrep '\bWang\b' 22Fclasslist | wc -l
+Results:
+1
+
+70- (0) egrep '\b(Chen|Chan)\b' 22Fclasslist
+Results:
+add22f  	*********	Chen	 QingS
+add22f  	*********	Chan	 Qin
+
+(2) egrep '\b(Liu|Lau)\b' 22Fclasslist
+Results:
+dan**     	*********	Liu	 Danyang                            
+w*nfred   	*********	Liu	 Chenxi                             
+added    	*********	Lau	 XueSW
+addSu    	*********	Liu	 Qing
+
+(4) egrep '\b(Wong|Wang)\b' 22Fclasslist
+Results:
+bw**      	*********	Wong	 Brandon                           
+masonw    	*********	Wang	 Zhenxu                            
+cse***    	*********	Wong	 JunXiu
+
+(4) egrep '\b(Chang|Zhang)\b' 22Fclasslist
+Results:
+enoch*    	*********	Zhang	 Jun                              
+zhang**   	*********	Zhang	 Hao                              
+zzy****   	*********	Zhang	 Ziyan                            
+add22f  	*********	Chang	 QiSim
+
+(5) egrep '\b(Zhu|Zhou)\b' 22Fclasslist
+Results:
+irithyll  	*********	Zhou	 Zehao                             
+add22f  	*********	Zhu	 XQ
+
+(6) egrep '\b(Gu|Guo)\b' 22Fclasslist
+Results:
+frangu    	*********	Gu	 Xiaowei                             
+jguo***   	*********	Guo	 Jing 
+
+71- cut -f 1 22Fclasslist
+Results:
+abdul***  
+ahmadrp   
+ajv**     
+aryan***  
+asdsoulj  
+ayse**    
+basara    
+brainbun  
+bw**      
+caoy**    
+carld**   
+dan**     
+dennis**  
+drofel    
+echendu*  
+ejaluk    
+enesy     
+enoch*    
+fafaki**  
+frangu    
+franklai  
+hastigh   
+hbnfvda   
+hiba***   
+hrsh****  
+iliaaz    
+irithyll  
+jaivald   
+jared***  
+jawad**   
+jaydenpb  
+jguo***   
+jiahao**  
+jibril**  
+jon****   
+jxcho     
+kris****  
+ldt****   
+ldv**     
+luanarm   
+masonw    
+mehryars  
+mmhoss    
+mm***     
+moaz**    
+moe***    
+monna***  
+mukul**   
+nguyet**  
+oliviayy  
+omarhi    
+pritam    
+raishat   
+ramanc    
+sayurus   
+simonhuo  
+sismail*  
+smi**     
+syed***   
+ubaidh**  
+vishek**  
+w*nfred   
+yhj****   
+yuanh     
+zeeshanr  
+zhang**   
+zzy****   
+added    
+cse***    
+cse***    
+ttCTV*    
+addedD    
+addSu    
+add22f  
+add22f  
+add22f  
+add22f
+
+cut -f 3 22Fclasslist
+Results:
+Al-Daeni
+Pasha
+Venditti
+Kalra
+Sidorin
+Cakmak
+Guan
+Cai
+Wong
+Cao
+Doroon
+Liu
+Snegiroff
+Retinskiy
+Echendu
+Ejuku
+Yesil
+Zhang
+Akbarzadeh
+Gu
+Lai
+Ghaneshirazi
+Pan
+Halani
+Benipal
+Azari
+Zhou
+Desai
+Leong
+Bhuiyan
+Brooks
+Guo
+Rong
+Osman
+Trinh
+Cho
+Singh
+Li
+Aldave
+Ribeiro Madeira
+Wang
+Sehati
+Hosseini
+Marufuzzaman
+Elzaabalawy
+Shamsa
+Jiang
+Chauhan
+Nguyen
+Yue
+Al Haj Issa
+Sapkota
+Raisha
+Clair
+Samarawickrama
+Huo
+Ismail
+Islam
+Syed
+Ubaid
+Lamba
+Liu
+Yun
+Yuan
+Rafaqat
+Zhang
+Zhang
+Lau
+Yu
+Wong
+Tong
+Pak
+Liu
+Chen
+Chang
+Chan
+Zhu
+
+cut -f 1-3 22Fclasslist
+Results:
+abdul***  	*********	Al-Daeni
+ahmadrp   	*********	Pasha
+ajv**     	*********	Venditti
+aryan***  	*********	Kalra
+asdsoulj  	*********	Sidorin
+ayse**    	*********	Cakmak
+basara    	*********	Guan
+brainbun  	*********	Cai
+bw**      	*********	Wong
+caoy**    	*********	Cao
+carld**   	*********	Doroon
+dan**     	*********	Liu
+dennis**  	*********	Snegiroff
+drofel    	*********	Retinskiy
+echendu*  	*********	Echendu
+ejaluk    	*********	Ejuku
+enesy     	*********	Yesil
+enoch*    	*********	Zhang
+fafaki**  	*********	Akbarzadeh
+frangu    	*********	Gu
+franklai  	*********	Lai
+hastigh   	*********	Ghaneshirazi
+hbnfvda   	*********	Pan
+hiba***   	*********	Halani
+hrsh****  	*********	Benipal
+iliaaz    	*********	Azari
+irithyll  	*********	Zhou
+jaivald   	*********	Desai
+jared***  	*********	Leong
+jawad**   	*********	Bhuiyan
+jaydenpb  	*********	Brooks
+jguo***   	*********	Guo
+jiahao**  	*********	Rong
+jibril**  	*********	Osman
+jon****   	*********	Trinh
+jxcho     	*********	Cho
+kris****  	*********	Singh
+ldt****   	*********	Li
+ldv**     	*********	Aldave
+luanarm   	*********	Ribeiro Madeira
+masonw    	*********	Wang
+mehryars  	*********	Sehati
+mmhoss    	*********	Hosseini
+mm***     	*********	Marufuzzaman
+moaz**    	*********	Elzaabalawy
+moe***    	*********	Shamsa
+monna***  	*********	Jiang
+mukul**   	*********	Chauhan
+nguyet**  	*********	Nguyen
+oliviayy  	*********	Yue
+omarhi    	*********	Al Haj Issa
+pritam    	*********	Sapkota
+raishat   	*********	Raisha
+ramanc    	*********	Clair
+sayurus   	*********	Samarawickrama
+simonhuo  	*********	Huo
+sismail*  	*********	Ismail
+smi**     	*********	Islam
+syed***   	*********	Syed
+ubaidh**  	*********	Ubaid
+vishek**  	*********	Lamba
+w*nfred   	*********	Liu
+yhj****   	*********	Yun
+yuanh     	*********	Yuan
+zeeshanr  	*********	Rafaqat
+zhang**   	*********	Zhang
+zzy****   	*********	Zhang
+added    	*********	Lau
+cse***    	*********	Yu
+cse***    	*********	Wong
+ttCTV*    	cse******	Tong
+addedD    	*********	Pak
+addSu    	*********	Liu
+add22f  	*********	Chen
+add22f  	*********	Chang
+add22f  	*********	Chan
+add22f  	*********	Zhu
+
+cut -f 1,3 22Fclasslist
+Results:
+abdul***  	Al-Daeni
+ahmadrp   	Pasha
+ajv**     	Venditti
+aryan***  	Kalra
+asdsoulj  	Sidorin
+ayse**    	Cakmak
+basara    	Guan
+brainbun  	Cai
+bw**      	Wong
+caoy**    	Cao
+carld**   	Doroon
+dan**     	Liu
+dennis**  	Snegiroff
+drofel    	Retinskiy
+echendu*  	Echendu
+ejaluk    	Ejuku
+enesy     	Yesil
+enoch*    	Zhang
+fafaki**  	Akbarzadeh
+frangu    	Gu
+franklai  	Lai
+hastigh   	Ghaneshirazi
+hbnfvda   	Pan
+hiba***   	Halani
+hrsh****  	Benipal
+iliaaz    	Azari
+irithyll  	Zhou
+jaivald   	Desai
+jared***  	Leong
+jawad**   	Bhuiyan
+jaydenpb  	Brooks
+jguo***   	Guo
+jiahao**  	Rong
+jibril**  	Osman
+jon****   	Trinh
+jxcho     	Cho
+kris****  	Singh
+ldt****   	Li
+ldv**     	Aldave
+luanarm   	Ribeiro Madeira
+masonw    	Wang
+mehryars  	Sehati
+mmhoss    	Hosseini
+mm***     	Marufuzzaman
+moaz**    	Elzaabalawy
+moe***    	Shamsa
+monna***  	Jiang
+mukul**   	Chauhan
+nguyet**  	Nguyen
+oliviayy  	Yue
+omarhi    	Al Haj Issa
+pritam    	Sapkota
+raishat   	Raisha
+ramanc    	Clair
+sayurus   	Samarawickrama
+simonhuo  	Huo
+sismail*  	Ismail
+smi**     	Islam
+syed***   	Syed
+ubaidh**  	Ubaid
+vishek**  	Lamba
+w*nfred   	Liu
+yhj****   	Yun
+yuanh     	Yuan
+zeeshanr  	Rafaqat
+zhang**   	Zhang
+zzy****   	Zhang
+added    	Lau
+cse***    	Yu
+cse***    	Wong
+ttCTV*    	Tong
+addedD    	Pak
+addSu    	Liu
+add22f  	Chen
+add22f  	Chang
+add22f  	Chan
+add22f  	Zhu
+
+cut -f 3,4 22Fclasslist > tmp
+cat tmp
+Results:
+Al-Daeni	 Abdulazeez                    
+Pasha	 Ahmad                            
+Venditti	 Anthony                       
+Kalra	 Aryan                            
+Sidorin	 Dmitrii                        
+Cakmak	 Ayse                            
+Guan	 Lin                               
+Cai	 Brian                              
+Wong	 Brandon                           
+Cao	 Yunfei                             
+Doroon	 Carl David                      
+Liu	 Danyang                            
+Snegiroff	 Dennis                       
+Retinskiy	 Georgy                       
+Echendu	 Ekenedilichukwu                
+Ejuku	 Kofi                             
+Yesil	 Enes                             
+Zhang	 Jun                              
+Akbarzadeh	 Faraz                       
+Gu	 Xiaowei                             
+Lai	 Frankie                            
+Ghaneshirazi	 Hasti                     
+Pan	 Zhucheng                           
+Halani	 Hiba                            
+Benipal	 Harsh-Deep                     
+Azari	 Ilia                             
+Zhou	 Zehao                             
+Desai	 Jaival                           
+Leong	 Jared                            
+Bhuiyan	 Jawad                          
+Brooks	 Jayden                          
+Guo	 Jing                               
+Rong	 Jiahao                            
+Osman	 Jibril                           
+Trinh	 Jonathan                         
+Cho	 Justin Yong June                   
+Singh	 Kristian                         
+Li	 Dongtai                             
+Aldave	 Adam                            
+Ribeiro Madeira	 Luana                  
+Wang	 Zhenxu                            
+Sehati	 Mehryar                         
+Hosseini	 Mohammad                      
+Marufuzzaman	 Syed                      
+Elzaabalawy	 Moaz                       
+Shamsa	 Mohammed                        
+Jiang	 Menghua                          
+Chauhan	 Mukul                          
+Nguyen	 Thanh                           
+Yue	 Yao                                
+Al Haj Issa	 Omar                       
+Sapkota	 Pritam                         
+Raisha	 Thahsin                         
+Clair	 Ramandeep                        
+Samarawickrama	 Sayuru                  
+Huo	 Sicheng                            
+Ismail	 Shahnaz                         
+Islam	 Sheikh                           
+Syed	 Mustafa                           
+Ubaid	 Hazm                             
+Lamba	 Vishek                           
+Liu	 Chenxi                             
+Yun	 Hyunji                             
+Yuan	 He Yang                           
+Rafaqat	 Zeeshan                        
+Zhang	 Hao                              
+Zhang	 Ziyan                            
+Lau	 XueSW
+Yu	 Ying
+Wong	 JunXiu
+Tong	 Tracy
+Pak	 Son-hyang
+Liu	 Qing
+Chen	 QingS
+Chang	 QiSim
+Chan	 Qin
+Zhu	 XQ
+
+cat 22Fclasslist | sort -k 3 | cut -f 3,4
+Results:
+Akbarzadeh	 Faraz                       
+Al-Daeni	 Abdulazeez                    
+Aldave	 Adam                            
+Al Haj Issa	 Omar                       
+Azari	 Ilia                             
+Benipal	 Harsh-Deep                     
+Bhuiyan	 Jawad                          
+Brooks	 Jayden                          
+Cai	 Brian                              
+Cakmak	 Ayse                            
+Cao	 Yunfei                             
+Chang	 QiSim
+Chan	 Qin
+Chauhan	 Mukul                          
+Chen	 QingS
+Cho	 Justin Yong June                   
+Clair	 Ramandeep                        
+Desai	 Jaival                           
+Doroon	 Carl David                      
+Echendu	 Ekenedilichukwu                
+Ejuku	 Kofi                             
+Elzaabalawy	 Moaz                       
+Ghaneshirazi	 Hasti                     
+Guan	 Lin                               
+Guo	 Jing                               
+Gu	 Xiaowei                             
+Halani	 Hiba                            
+Hosseini	 Mohammad                      
+Huo	 Sicheng                            
+Islam	 Sheikh                           
+Ismail	 Shahnaz                         
+Jiang	 Menghua                          
+Kalra	 Aryan                            
+Lai	 Frankie                            
+Lamba	 Vishek                           
+Lau	 XueSW
+Leong	 Jared                            
+Li	 Dongtai                             
+Liu	 Chenxi                             
+Liu	 Danyang                            
+Liu	 Qing
+Marufuzzaman	 Syed                      
+Nguyen	 Thanh                           
+Osman	 Jibril                           
+Pak	 Son-hyang
+Pan	 Zhucheng                           
+Pasha	 Ahmad                            
+Rafaqat	 Zeeshan                        
+Raisha	 Thahsin                         
+Retinskiy	 Georgy                       
+Ribeiro Madeira	 Luana                  
+Rong	 Jiahao                            
+Samarawickrama	 Sayuru                  
+Sapkota	 Pritam                         
+Sehati	 Mehryar                         
+Shamsa	 Mohammed                        
+Sidorin	 Dmitrii                        
+Singh	 Kristian                         
+Snegiroff	 Dennis                       
+Syed	 Mustafa                           
+Tong	 Tracy
+Trinh	 Jonathan                         
+Ubaid	 Hazm                             
+Venditti	 Anthony                       
+Wang	 Zhenxu                            
+Wong	 Brandon                           
+Wong	 JunXiu
+Yesil	 Enes                             
+Yuan	 He Yang                           
+Yue	 Yao                                
+Yun	 Hyunji                             
+Yu	 Ying
+Zhang	 Hao                              
+Zhang	 Jun                              
+Zhang	 Ziyan                            
+Zhou	 Zehao                             
+Zhu	 XQ
+
+72- egrep the /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+#So turn off the light, 1980
+Say all your prayers and then, 
+Beautiful mermaids will swim through the sea,
+And you will be swimming there too. 
+sea 1980 I got there by chance.
+
+73- egrep '\bthe\b' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+#So turn off the light, 1980
+Beautiful mermaids will swim through the sea,
+
+74- egrep -v '\bthe\b' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+#So turn off the light, 1980
+Beautiful mermaids will swim through the sea,
+crimson 500 $ egrep -v '\bthe\b' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Well you know it's your bedtime, 
+Say all your prayers and then, 
+Oh you sleepy young 1970 heads dream of wonderful things, 
+And you will be swimming there too. 
+sea 1980 I got there by chance.
+
+75- egrep '[0-9]' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+#So turn off the light, 1980
+Oh you sleepy young 1970 heads dream of wonderful things, 
+sea 1980 I got there by chance.
+
+76- egrep '1980' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+#So turn off the light, 1980
+sea 1980 I got there by chance.
+
+77- egrep '1980$' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+#So turn off the light, 1980
+
+78- egrep sea /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+Beautiful mermaids will swim through the sea,
+sea 1980 I got there by chance.
+
+79- egrep '^sea' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+sea 1980 I got there by chance.
+
+80- egrep '^.nd\b' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+And you will be swimming there too.
+
+81- egrep '[ABCD]' /eecs/dept/course/2019-20/W/2030tmp/lyrics
+Results:
+Beautiful mermaids will swim through the sea,
+And you will be swimming there too.
+
+82- cd ..
+
+83- find . -name "xFile?"
+Results:
+./lab6working/xFile2
+./lab6working/xFile3
+./lab6working/xFile1
+
+84- find . -name "xFile*"
+Results:
+./lab6working/xFile2
+./lab6working/xFile3
+./lab6working/xFile1
+./lab6working/xFile123
+./lab6working/xFile123compact
+
+85- (1) find . -name "xFile*" -exec mv {} {}.Lab6 \;
+(2) ls lab6working
+Results:
+22Fclasslist  xFile123compact.Lab6  xFile1.Lab6  xFile3.Lab6
+tmp	      xFile123.Lab6	    xFile2.Lab6
+
+(3) find . -name "xFile*" -exec chmod 775 {} \;
+(4) ls -l lab6working
+Results:
+total 32
+-rwx------ 1 nahass ugrad 4467 Nov 18 17:44 22Fclasslist
+-rw------- 1 nahass ugrad 2860 Nov 18 17:56 tmp
+-rwxrwxr-x 1 nahass ugrad  145 Nov 18 17:27 xFile123compact.Lab6
+-rwxrwxr-x 1 nahass ugrad  377 Nov 18 17:26 xFile123.Lab6
+-rwxrwxr-x 1 nahass ugrad  168 Nov 18 17:30 xFile1.Lab6
+-rwxrwxr-x 1 nahass ugrad  145 Nov 18 16:59 xFile2.Lab6
+-rwxrwxr-x 1 nahass ugrad   87 Nov 18 16:59 xFile3.Lab6
+
+86- cd lab6working
+ls *
+Results:
+22Fclasslist  xFile123compact.Lab6  xFile1.Lab6  xFile3.Lab6
+tmp	      xFile123.Lab6	    xFile2.Lab6
+
+ls xFile*.Lab6
+Results:
+xFile123compact.Lab6  xFile123.Lab6  xFile1.Lab6  xFile2.Lab6  xFile3.Lab6
+
+ls xFile?.Lab6
+Results:
+xFile1.Lab6  xFile2.Lab6  xFile3.Lab6
+
+ls xFile???.Lab6
+Results:
+xFile123.Lab6
+
+ls xFile[1,3].Lab6
+Results:
+xFile1.Lab6  xFile3.Lab6
+
+ls xFile[1-3].Lab6
+Results:
+xFile1.Lab6  xFile2.Lab6  xFile3.Lab6
+
+wc -l xFile?.Lab6
+Results:
+  6 xFile1.Lab6
+  5 xFile2.Lab6
+  3 xFile3.Lab6
+ 14 total
+
+wc -l xFile???.Lab6
+Results:
+13 xFile123.Lab6
+
+wc -l xFile[1,3].Lab6
+Results:
+  6 xFile1.Lab6
+  3 xFile3.Lab6
+  9 total
+
+wc -l xFile[1-3].Lab6
+Results:
+  6 xFile1.Lab6
+  5 xFile2.Lab6
+  3 xFile3.Lab6
+ 14 total
+
+87- echo "Hello, now is $(date). Have a good day"
+Results:
+Hello, now is Mon Nov 18 18:09:58 EST 2024. Have a good day
+
+echo "There are $(wc -l < 22Fclasslist) students in EECS2031B 2022F"
+Results:
+There are 77 students in EECS2031B 2022F
+
+echo "There are $(egrep '\bLiu\b' 22Fclasslist | wc -l) students in EECS2031B with family name Liu"
+Results:
+There are 3 students in EECS2031B with family name Liu
+
+88- egrep -w Choi 22Fclasslist
+echo $?
+Results:
+1
+
+egrep -w Zhu 22Fclasslist
+Results:
+add22f  	*********	Zhu	 XQ
+
+echo $?
+Results:
+0
+
+egrep -w Choi 22Fclasslist && echo HELLO
+egrep -w Zhu 22Fclasslist && echo HELLO
+Results:
+add22f  	*********	Zhu	 XQ
+HELLO
+
+egrep -w Choi 22Fclasslist || echo HELLO
+Results:
+HELLO
+
+egrep -w Zhu 22Fclasslist || echo HELLO
+Results:
+add22f  	*********	Zhu	 XQ
+
+89- courseN=EECS2031;
+echo  3 * 4 = 12, course name is $courseN – today is `date`, bye
+Results:
+3 22Fclasslist tmp xFile123compact.Lab6 xFile123.Lab6 xFile1.Lab6 xFile2.Lab6 xFile3.Lab6 4 = 12, course name is EECS2031 – today is Mon Nov 18 18:13:11 EST 2024, bye
+
+echo ' 3 * 4 = 12, course name is $courseN – today is `date`, bye '
+Results:
+ 3 * 4 = 12, course name is $courseN – today is `date`, bye 
+
+echo " 3 * 4 = 12, course name is $courseN – today is `date`, bye "
+Results:
+ 3 * 4 = 12, course name is EECS2031 – today is Mon Nov 18 18:14:07 EST 2024, bye 
+
