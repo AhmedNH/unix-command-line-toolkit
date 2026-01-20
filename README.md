@@ -1,101 +1,96 @@
 # Unix Command-Line Systems Toolkit
 
-This project showcases **practical Unix/Linux command-line proficiency**, demonstrating how core system utilities and shell features can be composed to solve real-world file system, text-processing, and automation tasks efficiently.
+A **systems-focused Unix/Linux command-line project** demonstrating how core OS utilities and shell semantics can be composed to perform reliable, efficient file system and text-processing operations in production-like environments.
 
-The focus is on **tool-based problem solving**, leveraging standard Unix utilities and shell semantics rather than graphical interfaces.
+The project emphasizes **tool-based problem solving, correctness, and composability**, reflecting workflows used in backend, infrastructure, and systems engineering.
 
 ---
 
 ## 🔍 Overview
 
-The repository contains a collection of workflows and command sequences that replicate common tasks performed in Linux-based development and server environments, including:
+This repository implements and validates a collection of Unix command-line workflows that replicate common tasks in Linux-based development environments:
 
-* File and directory manipulation
-* Permission and ownership management
-* Text processing and comparison
+* File system manipulation and traversal
+* Permission and access control management
+* Stream-based text processing
 * Pattern matching with regular expressions
-* Command pipelines and redirection
-* Exit-code–driven control flow
+* Pipeline construction and I/O redirection
+* Exit-code–driven execution control
 
-All tasks are completed using **standard Unix utilities**, emphasizing correctness, composability, and efficiency.
-
----
-
-## 🧠 System-Level Concepts
-
-### Command Composition & Pipelines
-
-The project demonstrates how small, single-purpose tools can be composed using pipes to form powerful workflows:
-
-* Chaining commands to process data streams
-* Avoiding intermediate files where possible
-* Leveraging standard input/output semantics
-
-This reflects the Unix philosophy of building complex behavior from simple primitives.
+All functionality is implemented using **standard Unix utilities and Bash**, without custom scripts or external dependencies.
 
 ---
 
-### File System Operations
+## 🧠 Systems Design & Execution Model
 
-Operations performed include:
+### Command Composition
 
-* Creating, copying, moving, renaming, and deleting files and directories
-* Recursive directory traversal
+* Commands are composed using **pipes** to form deterministic data-processing pipelines
+* Standard input/output streams are used to eliminate unnecessary intermediate files
+* Each command is treated as a single-responsibility system component
+
+This mirrors the Unix philosophy used extensively in production tooling and automation.
+
+---
+
+### File System Semantics
+
+The project exercises core file system behaviors, including:
+
 * Relative vs absolute path resolution
-* Safe handling of non-existent files and directories
+* Recursive operations and directory traversal
+* Safe handling of non-existent or restricted resources
+* Metadata inspection and verification
 
-These workflows mirror tasks commonly encountered in development, deployment, and debugging environments.
+These operations model real-world workflows in build systems, deployment pipelines, and server environments.
 
 ---
 
 ### Permissions & Access Control
 
-The project explores Unix file permissions in depth:
+* Explicit manipulation of read, write, and execute permissions
+* Understanding numeric and symbolic permission modes
+* Observing how permission changes affect runtime behavior
 
-* Read, write, and execute modes
-* Numeric and symbolic permission representations
-* Understanding how permissions affect program execution and file access
-
-This provides insight into access control and security fundamentals in multi-user systems.
+This demonstrates practical knowledge of multi-user system security and access boundaries.
 
 ---
 
-## 🔎 Text Processing & Search
+## 🔎 Text Processing & Data Querying
 
-A significant portion of the project focuses on extracting and transforming structured text data using:
+Structured text is queried and transformed using:
 
-* `grep` / `egrep` with regular expressions
-* `sort`, `uniq`, and field-based ordering
-* `cut` for column extraction
-* `wc` for quantitative analysis
+* `grep` / `egrep` with precise regular expressions
+* Field-based extraction using `cut`
+* Ordering and deduplication using `sort` and `uniq`
+* Quantitative analysis using `wc`
 
-These tools are used to perform non-trivial data queries without writing custom programs, showcasing efficiency and precision.
+The project demonstrates how non-trivial data analysis can be performed efficiently without bespoke code.
 
 ---
 
 ## 🔄 Validation & Correctness
 
-To ensure correctness:
+Correctness is enforced through:
 
-* File comparisons are validated using `cmp` and `diff`
-* Exit codes are explicitly checked to verify command success or failure
-* Outputs are inspected for deterministic behavior
+* File comparison using `cmp` and `diff`
+* Explicit inspection of process exit codes
+* Deterministic output verification
 
-This reinforces defensive workflows and reliable system interaction.
+These practices reflect defensive engineering and reliable system interaction.
 
 ---
 
-## ⚙️ Shell Features & Execution Model
+## ⚙️ Shell Semantics & Control Flow
 
-The project demonstrates core shell behaviors, including:
+The project demonstrates mastery of core shell behaviors:
 
-* Input and output redirection
-* Wildcards and filename expansion
+* Input/output redirection
+* Wildcard expansion and quoting rules
 * Command substitution
 * Conditional execution using logical operators (`&&`, `||`)
-* Quoting rules and their effects on evaluation
 
-Understanding these behaviors is critical for writing safe and predictable shell commands.
+This ensures predictable behavior in complex command sequences.
 
 ---
 
@@ -103,16 +98,13 @@ Understanding these behaviors is critical for writing safe and predictable shell
 
 * **Environment:** Unix / Linux
 * **Shell:** Bash
-* **Utilities:**
-
-  * Core GNU utilities (`ls`, `cp`, `mv`, `rm`, `chmod`, `find`, etc.)
-  * Text-processing tools (`grep`, `sort`, `uniq`, `cut`)
+* **Tooling:** Core GNU utilities
 * **Core Concepts:**
 
   * Unix philosophy
   * File system abstractions
   * Permissions and access control
-  * Stream-based processing
+  * Stream processing
   * Regular expressions
   * Exit codes and error handling
 
@@ -120,20 +112,18 @@ Understanding these behaviors is critical for writing safe and predictable shell
 
 ## 🚀 Why This Project Matters
 
-This project demonstrates skills directly applicable to **software engineering internships**:
+This project demonstrates competencies directly relevant to **FAANG-scale software engineering**:
 
-* Comfort working in Linux-based environments
-* Ability to reason about systems through tooling
-* Writing precise, efficient command-line workflows
-* Understanding how programs interact with the OS
-* Translating abstract system concepts into concrete operations
-
-These skills are essential for backend development, DevOps, infrastructure, and systems-focused roles.
+* Systems-level thinking using real OS primitives
+* Precision and correctness in tooling-based workflows
+* Strong understanding of Linux execution models
+* Ability to build reliable, composable solutions from low-level components
+* Comfort operating close to the operating system boundary
 
 ---
 
 ## 👤 Author
 
-**Computer Science (Honours)**  
+**Computer Science (Honors)**  
 York University  
 Third-Year Computer Science Honors Student
