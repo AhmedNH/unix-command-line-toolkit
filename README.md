@@ -1,129 +1,81 @@
-# Unix Command-Line Systems Toolkit
+# Hands-On Practice with Unix Utilities and Shell Functionalities
 
-A **systems-focused Unix/Linux command-line project** demonstrating how core OS utilities and shell semantics can be composed to perform reliable, efficient file system and text-processing operations in production-like environments.
-
-The project emphasizes **tool-based problem solving, correctness, and composability**, reflecting workflows used in backend, infrastructure, and systems engineering.
+A documented walkthrough of 89 Unix shell exercises covering file management, text processing, regular expressions, permissions, sorting, and shell quoting — all run on a live Linux system.
 
 ---
 
-## 🔍 Overview
+## Topics Covered
 
-This repository implements and validates a collection of Unix command-line workflows that replicate common tasks in Linux-based development environments:
+### File and Directory Management
+Creating, copying, moving, and removing files and directories using `cp`, `mv`, `rm`, `mkdir`, `rmdir`, `find`, and `ls` with various flags (`-l`, `-R`, `-lt`, `-lS`, `-ltr`, `-lSr`).
 
-* File system manipulation and traversal
-* Permission and access control management
-* Stream-based text processing
-* Pattern matching with regular expressions
-* Pipeline construction and I/O redirection
-* Exit-code–driven execution control
+```bash
+cp /path/to/file .            # copy into current directory
+mv xFile1 xFile2 dir/         # move multiple files at once
+rm -rf lab6a                  # force-remove a non-empty directory
+find . -name "xFile*" -exec chmod 775 {} \;   # find + execute on results
+```
 
-All functionality is implemented using **standard Unix utilities and Bash**, without custom scripts or external dependencies.
+### Permissions and `chmod`
+Modifying file permissions using both symbolic and octal notation, and observing the effect on file access.
 
----
+```bash
+chmod u-r xFile1      # remove read from owner
+chmod 775 xFile1      # set rwxrwxr-x
+chmod g-w,o+rw xFile1 # compound symbolic change
+```
 
-## 🧠 Systems Design & Execution Model
+### Text Processing
+Reading, concatenating, and processing file content with `cat`, `more`, `head`, `tail`, `wc`, `sort`, `uniq`, `cut`, `cmp`, and `diff`.
 
-### Command Composition
+```bash
+cat xFile1 xFile2 xFile3 > xFile123        # concatenate into one file
+sort xFile123 | uniq > xFile123compact      # sort and deduplicate
+sort -k6,6nr xFile123compact                # sort by field 6, numeric, reverse
+cut -f 1,3 22Fclasslist                     # extract fields 1 and 3
+diff xFile2 xFile3                          # show line differences
+```
 
-* Commands are composed using **pipes** to form deterministic data-processing pipelines
-* Standard input/output streams are used to eliminate unnecessary intermediate files
-* Each command is treated as a single-responsibility system component
+### Regular Expressions with `egrep`
+Pattern matching across files using basic patterns, word boundaries, anchors, character classes, and alternation.
 
-This mirrors the Unix philosophy used extensively in production tooling and automation.
+```bash
+egrep ' 2 ' xFile123compact          # exact match with spaces
+egrep '195.' xFile123compact         # any character wildcard
+egrep '\bLi\b' 22Fclasslist         # whole-word match
+egrep '\b(Liu|Lau)\b' 22Fclasslist  # alternation
+egrep '^sea' lyrics                  # line anchor
+egrep '1980$' lyrics                 # end-of-line anchor
+egrep '[0-9]' lyrics                 # character class
+egrep -v '\bthe\b' lyrics            # invert match
+```
 
----
+### Shell Features
+Variable assignment, command substitution, quoting rules, exit codes (`$?`), and logical operators (`&&`, `||`).
 
-### File System Semantics
+```bash
+echo "There are $(wc -l < 22Fclasslist) students"   # command substitution
+courseN=EECS2031; echo "course is $courseN"           # variable expansion
+egrep -w Zhu 22Fclasslist && echo HELLO               # short-circuit AND
+egrep -w Choi 22Fclasslist || echo HELLO              # short-circuit OR
+echo $?                                                # check exit code
+```
 
-The project exercises core file system behaviors, including:
+### Glob Patterns
+Matching files using `?`, `*`, `[...]`, and `[a-z]` wildcard patterns in `ls` and `wc`.
 
-* Relative vs absolute path resolution
-* Recursive operations and directory traversal
-* Safe handling of non-existent or restricted resources
-* Metadata inspection and verification
-
-These operations model real-world workflows in build systems, deployment pipelines, and server environments.
-
----
-
-### Permissions & Access Control
-
-* Explicit manipulation of read, write, and execute permissions
-* Understanding numeric and symbolic permission modes
-* Observing how permission changes affect runtime behavior
-
-This demonstrates practical knowledge of multi-user system security and access boundaries.
-
----
-
-## 🔎 Text Processing & Data Querying
-
-Structured text is queried and transformed using:
-
-* `grep` / `egrep` with precise regular expressions
-* Field-based extraction using `cut`
-* Ordering and deduplication using `sort` and `uniq`
-* Quantitative analysis using `wc`
-
-The project demonstrates how non-trivial data analysis can be performed efficiently without bespoke code.
-
----
-
-## 🔄 Validation & Correctness
-
-Correctness is enforced through:
-
-* File comparison using `cmp` and `diff`
-* Explicit inspection of process exit codes
-* Deterministic output verification
-
-These practices reflect defensive engineering and reliable system interaction.
+```bash
+ls xFile?.Lab6        # single-character wildcard
+ls xFile[1,3].Lab6    # character set
+ls xFile[1-3].Lab6    # character range
+wc -l xFile*.Lab6     # count lines across all matches
+```
 
 ---
 
-## ⚙️ Shell Semantics & Control Flow
+## Project Structure
 
-The project demonstrates mastery of core shell behaviors:
-
-* Input/output redirection
-* Wildcard expansion and quoting rules
-* Command substitution
-* Conditional execution using logical operators (`&&`, `||`)
-
-This ensures predictable behavior in complex command sequences.
-
----
-
-## 🛠️ Technologies & Concepts
-
-* **Environment:** Unix / Linux
-* **Shell:** Bash
-* **Tooling:** Core GNU utilities
-* **Core Concepts:**
-
-  * Unix philosophy
-  * File system abstractions
-  * Permissions and access control
-  * Stream processing
-  * Regular expressions
-  * Exit codes and error handling
-
----
-
-## 🚀 Why This Project Matters
-
-This project demonstrates competencies directly relevant to **FAANG-scale software engineering**:
-
-* Systems-level thinking using real OS primitives
-* Precision and correctness in tooling-based workflows
-* Strong understanding of Linux execution models
-* Ability to build reliable, composable solutions from low-level components
-* Comfort operating close to the operating system boundary
-
----
-
-## 👤 Author
-
-**Computer Science (Honors)**  
-York University  
-Third-Year Computer Science Honors Student
+```
+Hands-On Practice with Unix Utilities and Shell Functionalities/
+└── Project.txt    # All 89 exercises with commands and their exact output
+```
